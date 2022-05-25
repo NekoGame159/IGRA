@@ -15,12 +15,15 @@ player_x = 0 # задаем начальную координату x для к�
 player_y = 0 # задаем начальную координату y для картинки рыбки
 s_width = 1000 # задаем перменную ширины игрового окна
 s_high = 500 # задаем переменную высоты игрового окна
+BLACK = (0, 0, 0)
 left_wall = pygame.Rect(-2,0,2,505)
 right_wall = pygame.Rect(1930, 0, 2, 505)
 top_wall = pygame.Rect(-2,-2,1005,2)
 down_wall = pygame.Rect(201,950,1005,2)
 wall_1 = pygame.Rect(145,10,2,155)
-wall_2 = pygame.Rect(2,2,400,2)
+wall_2 = pygame.Rect(125,165,450,10)
+wall_3 = pygame.Rect(0,0,0,0)
+
 
 # ***************** Основной цикл игры *****************
 # Все ниже 'while running' будет повторяться бесконечно, пока не закроете окно (т.е. когда running станет = False)
@@ -37,12 +40,13 @@ while running:
         player_x = player_x - 4  # уменьшаем координату x рыбки
     if keys[pygame.K_DOWN] and not player.colliderect(down_wall): # если в keys зафиксировано нажатие стрелки вниз
         player_y = player_y + 4 # увеличиваем координату y рыбки
-    if keys[pygame.K_UP] and not player.colliderect(top_wall) and not player.colliderect(wall_2): # если в keys зафиксировано нажатие стрелки вверх
+    if keys[pygame.K_UP] and not player.colliderect(top_wall) and not player.colliderect(wall_2):
         player_y = player_y - 4 # уменьшаем координату y рыбки       
 
     screen.blit(background_pic,(0,0))      
     screen.blit(pygame.transform.scale(player_pic,(70,60)),(player_x,player_y))
     
+    pygame.draw.rect(screen, BLACK, ())
     pygame.display.flip() # обновляем окно дисплея, выводим в него экран с изменениями
     clock.tick(60) # делаем задержку, обновление экрана происходит на быстрее 50 раз в секунду
 
